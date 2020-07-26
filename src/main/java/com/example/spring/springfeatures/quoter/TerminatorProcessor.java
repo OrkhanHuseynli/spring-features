@@ -4,10 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class QuoteProcessor {
+public class TerminatorProcessor {
     private final TerminatorQuoter terminatorQuoter;
 
-    public QuoteProcessor(@Autowired TerminatorQuoter terminatorQuoter){
+    public TerminatorProcessor(@Autowired TerminatorQuoter terminatorQuoter){
         this.terminatorQuoter = terminatorQuoter;
     }
 

@@ -6,18 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class QuoteProcessorTest {
+public class TerminatorProcessorTest {
 
     @Autowired
     private TerminatorQuoter terminatorQuoter;
 
     @Autowired
-    private QuoteProcessor quoteProcessor;
+    private TerminatorProcessor quoteProcessor;
 
     // We prove that by default the Spring IoC inits
     // beans in a singletone mode
     @Test
-    public void testQuoterProcessor(){
+    public void testTerminatorProcessor(){
         String message = "terminator message";
         terminatorQuoter.setMessage(message);
         String  qMessage = quoteProcessor.getMessage();
