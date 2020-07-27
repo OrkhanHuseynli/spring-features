@@ -1,10 +1,13 @@
 package com.example.spring.springfeatures.quoter;
 
+import com.example.spring.springfeatures.profiling.Profiling;
+
 import javax.annotation.PostConstruct;
 
+@Profiling
 public class TerminatorQuoter implements Quoter {
 
-    @InjectRandomInt(min=3, max=10)
+    @InjectRandomInt(min=1, max=4)
     private int repeat;
 
     private String message;

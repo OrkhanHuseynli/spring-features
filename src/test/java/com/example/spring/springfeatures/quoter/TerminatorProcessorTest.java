@@ -9,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class TerminatorProcessorTest {
 
     @Autowired
-    private TerminatorQuoter terminatorQuoter;
+    private Quoter terminatorQuoter;
 
     @Autowired
     private TerminatorProcessor quoteProcessor;
