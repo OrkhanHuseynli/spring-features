@@ -16,7 +16,7 @@ public class TerminatorQuoterTest {
 
     @Test
     public void sayQuoteTest(){
-        Quoter quoter = context.getBean(Quoter.class);
+        Quoter quoter = context.getBean("terminatorQuoter", Quoter.class);
         quoter.setMessage("Test message");
         quoter.sayQuote();
     }
@@ -28,9 +28,9 @@ public class TerminatorQuoterTest {
      */
     @Test
     public void sayQuoteWithProfilingTest() throws InterruptedException {
-        Quoter quoter = context.getBean(Quoter.class);
+        Quoter quoter = context.getBean("terminatorQuoter", Quoter.class);
         int counter = 0;
-        while (counter<50) {
+        while (counter<20) {
             counter++;
             quoter.setMessage("testable message : " + counter);
             sleep(2000);

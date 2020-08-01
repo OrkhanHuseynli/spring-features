@@ -1,10 +1,9 @@
 package com.example.spring.springfeatures;
 
 import com.example.spring.springfeatures.profiling.ProfilingHandlerBeanPostProcessor;
-import com.example.spring.springfeatures.quoter.InjectRandomIntAnnotationBeanPostProcessor;
-import com.example.spring.springfeatures.quoter.Quoter;
-import com.example.spring.springfeatures.quoter.TerminatorProcessor;
-import com.example.spring.springfeatures.quoter.TerminatorQuoter;
+import com.example.spring.springfeatures.quoter.*;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -16,18 +15,28 @@ public class AppConfig {
         return new InjectRandomIntAnnotationBeanPostProcessor();
     }
 
-    @Bean
+    @Bean(name = "terminatorQuoter")
     TerminatorQuoter terminatorQuoter(){
         return new TerminatorQuoter();
     }
 
+    @Bean(name="robotQuoter")
+    RobotQuoter robotQuoter(){
+        return new RobotQuoter();
+    }
+
     @Bean
-    TerminatorProcessor terminatorProcessor(final Quoter quoter){
+    TerminatorProcessor terminatorProcessor(final @Qualifier("terminatorQuoter") Quoter quoter){
         return new TerminatorProcessor(quoter);
     }
 
     @Bean
     ProfilingHandlerBeanPostProcessor profilingHandlerBeanPostProcessor() throws Exception {
         return  new ProfilingHandlerBeanPostProcessor();
+    }
+
+    @Bean
+    PostProxyInvokerContextListener postProxyInvokerContextListener(final ConfigurableListableBeanFactory factory){
+        return  new PostProxyInvokerContextListener(factory);
     }
 }
