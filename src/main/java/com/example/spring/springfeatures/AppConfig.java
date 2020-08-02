@@ -1,5 +1,7 @@
 package com.example.spring.springfeatures;
 
+import com.example.spring.springfeatures.profiling.ProfilingController;
+import com.example.spring.springfeatures.profiling.ProfilingControllerMBean;
 import com.example.spring.springfeatures.profiling.ProfilingHandlerBeanPostProcessor;
 import com.example.spring.springfeatures.quoter.*;
 import org.springframework.beans.factory.annotation.Qualifier;

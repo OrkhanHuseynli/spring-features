@@ -38,20 +38,17 @@ public class ProfilingHandlerBeanPostProcessor implements BeanPostProcessor {
         if(beanClass!=null){
 
             // An Object which encapsulate the logic which is going to be added to the all methods
-            InvocationHandler invocationHandler = new InvocationHandler() {
-                @Override
-                public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+            InvocationHandler invocationHandler = (proxy, method, args) -> {
 
-                    if (controller.isEnabled()) {
-                        System.out.println("Profiling...");
-                        long before = System.nanoTime();
-                        Object retValues = method.invoke(bean, args);
-                        long after = System.nanoTime();
-                        System.out.println("Profiling time : " + (after-before));
-                        return retValues;
-                    }
-                    return method.invoke(bean, args);
+                if (controller.isEnabled()) {
+                    System.out.println("Profiling...");
+                    long before = System.nanoTime();
+                    Object retValues = method.invoke(bean, args);
+                    long after = System.nanoTime();
+                    System.out.println("Profiling time : " + (after-before));
+                    return retValues;
                 }
+                return method.invoke(bean, args);
             };
             // Creates an object from a NEW class which he is going to generate on the fly
             return Proxy.newProxyInstance(beanClass.getClassLoader(), beanClass.getInterfaces(), invocationHandler);

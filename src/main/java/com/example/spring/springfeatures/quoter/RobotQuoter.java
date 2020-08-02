@@ -13,13 +13,19 @@ public class RobotQuoter implements Quoter {
     private String message;
 
     public RobotQuoter(){
-        System.out.println("Phase 1: Spring inits Object through Reflection");
+        System.out.println("Phase 1: Java Constructor => Spring inits `"+this.getClass().getName()+"`Object through Reflection \n" +
+                "variables are set to : \n " +
+                "repeat = " + this.repeat + "\n"+
+                "message = "+this.message);
     }
 
     @PostConstruct
     public void init(){
-        System.out.println("Phase 2: Spring configures the init-ed Object");
-        System.out.println("repeat: the filed is configured via annotation as the Sprig is already in action \n repeat = " + this.repeat);
+        System.out.println("Phase 2: @PostConstruct annotation =>  Spring configures the init-ed Object `"+this.getClass().getName()+"`");
+        System.out.println("repeat: the filed is configured via annotation as the Sprig is already in action \n" +
+                "variables are set to : \n " +
+                "repeat = " + this.repeat + "\n"+
+                "message = "+this.message);
     }
 
     public void setMessage(String message){
@@ -34,7 +40,7 @@ public class RobotQuoter implements Quoter {
     @Override
     public void sayQuote() {
         for(int i = 0; i < this.repeat; i++){
-            System.out.println("Quote : " + this.message);
+            System.out.println(this.getClass().getName() + " Quote : " + this.message);
         }
     }
 }
